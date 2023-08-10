@@ -1,0 +1,29 @@
+﻿@model Post
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>Post by: @Model.UserName</h1>
+<p>Posted on: @Model.DatePosted</p>
+<p>@Model.Content</p>
+
+<h2>Comments:</h2>
+
+<form asp-method="post" asp-action="AddComment">
+    <p>Type Comment:</p>
+    <input type="text" name="Content" />
+    <input type="number" name="PostId" value="@Model.Id" hidden />
+
+    <input type="submit" />
+</form>
+
+<ul>
+    @{
+        foreach(Comment c in ViewBag.Comments)
+        {
+            <li>@c.Content</li>
+        }
+    }
+</ul>

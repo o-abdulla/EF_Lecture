@@ -1,0 +1,25 @@
+﻿@model List<Post>
+
+<h1>Welcome to Bird App</h1>
+
+<form asp-method="post" asp-action="AddPost">
+    <p>Username:</p>
+    <input type="text" name="UserName" />
+    <p>Whats on your mind?</p>
+    <textarea name="Content" rows="4" cols="50"></textarea>
+
+    <input type="submit" />
+</form>
+
+
+@{
+    foreach(Post p in Model)
+    {
+        <a class="nav-link text-dark p-0" asp-action="Details" asp-route-id="@p.Id">
+        <div class="card">
+          <h2>@p.UserName</h2>
+          <p>@p.Content</p>
+        </div>
+        </a>
+    }
+}
